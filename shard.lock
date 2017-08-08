@@ -1,0 +1,18 @@
+version: 1.0
+shards:
+  chalk_box:
+    github: azukiapp/crystal-chalk-box
+    version: 0.2.0
+
+  db:
+    github: crystal-lang/crystal-db
+    version: 0.4.2
+
+  myhtml:
+    github: kostya/myhtml
+    version: 0.26
+
+  mysql:
+    github: crystal-lang/crystal-mysql
+    version: 0.3.2
+

@@ -1,0 +1,25 @@
+name: mxmongo
+version: 0.1.0
+
+authors:
+  - elrok123 <conner@systemicconfluence.com>
+
+targets:
+  mxmongo:
+    main: src/mxmongo.cr
+
+dependencies:
+  db:
+    github: crystal-lang/crystal-db
+    version: 0.4.2
+  mysql:
+    github: crystal-lang/crystal-mysql
+  chalk_box:
+    github: azukiapp/crystal-chalk-box
+  myhtml:
+    github: kostya/myhtml
+version: 0.2.0
+
+crystal: 0.22.0
+
+license: MIT
