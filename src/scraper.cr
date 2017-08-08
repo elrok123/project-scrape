@@ -17,9 +17,11 @@ class Combinator
 	end
 
 	def get_permutations(length = 1)
+		domain_permutations = [] of String
 		("a".."z").to_a.each_permutation(length) do |permutation|
 			
 		end
+		
 	end
 
 	def add(letters)
