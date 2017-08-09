@@ -52,8 +52,8 @@ class Combinator
 		
 	end
 
-	def continueFromString(lastString = "")
-		arr_str  = lastSring.split("")
+	def continue_from_string(last_string = "")
+		arr_str  = last_sring.split("")
 		nb_chars = arr_str.size
 		
 		index = 1
