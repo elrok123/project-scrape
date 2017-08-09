@@ -18,6 +18,8 @@ dependencies:
     github: azukiapp/crystal-chalk-box
   myhtml:
     github: kostya/myhtml
+  mongo:
+    github: datanoise/mongo.cr
 version: 0.2.0
 
 crystal: 0.22.0

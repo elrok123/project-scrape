@@ -8,6 +8,10 @@ shards:
     github: crystal-lang/crystal-db
     version: 0.4.2
 
+  mongo:
+    github: datanoise/mongo.cr
+    commit: 30117a7c9d3eab81557ad0ae833f7109c4e6cabc
+
   myhtml:
     github: kostya/myhtml
     version: 0.26
