@@ -51,6 +51,33 @@ class Combinator
 	def add(letters)
 		
 	end
+
+	def continueFromString(lastString = "")
+		arr_str  = lastSring.split("")
+		nb_chars = arr_str.size
+		
+		index = 1
+		while index < nb_chars
+			(arr_str[index].."z").to_a.each do |new_char|
+				new_str = arr_str[0..index-1].join + new_char + arr_str[index+1..nb_chars].join
+				# add new_str to db
+			end
+			index += 1
+		end
+
+		arr_left = (arr_str[0].."z").to_a
+		arr_left = arr_left[1..arr_left.size]
+		
+		arr_left.each do |char|
+			("a".."z").to_a.each_permutation(nb_chars-1) do |permutation|
+				new_str = char + permutation.join
+				# add new_str to db
+			end
+		end
+		
+		#continue with permutations for the next lvl
+		self.get_permutations(nb_chars+1)
+	end
 end
 combiner = Combinator.new
 (1..1000).each do |string_length|
