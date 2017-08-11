@@ -1,13 +1,3 @@
-# Standard libs
-#require "mysql"
-#require "db"
-require "mongo"
-require "colorize"
-
-# Custom classes
-require "./classes/mongo.cr"
-
-
 class Combinator
 	@domains_collection : Mongo::Collection | Nil
 	def initialize()
@@ -47,14 +37,4 @@ class Combinator
 		@domains_collection.not_nil!.insert({"name" => domain_to_add }.to_bson)
 		return true	
 	end
-
-	def add(letters)
-		
-	end
-end
-combiner = Combinator.new
-(1..1000).each do |string_length|
-	puts "Combining string length of #{string_length}..."
-	combiner.get_permutations(string_length)
-	puts "Finished combining strings of length #{string_length}"
 end
