@@ -87,13 +87,13 @@ class OptionParser
 			debug: @debug,
 			help: @help,
 			tool: @tool
-			
 		}
 	end
 	def show_version
 		puts <<-VERSIONTEXT
-			MailXpertise Campaign Tracking MongoDB Assembler V3.0
-			Developed by Conner McCabe for MailXpertise
+			ProjectScrape: a tool created to crawl the web for media forms
+			Overly ambitious and ridiculously complex, just how we like it.
+			Developed by elrok123 and obeidath for personal use.
 		VERSIONTEXT
 	end
 	def show_help
