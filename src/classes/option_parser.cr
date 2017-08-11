@@ -11,7 +11,7 @@ class OptionParser
 
 		# All optional params should be listed in either @arg_keywords or @arg_keychars, one for the full length param and one for the singe character flags (respectively)
 		@arg_keywords = ["generate-domains", "check-active-domains", "scrape-all", "--debug", "--help", "--verbose", "--account", "--version"]
-		@arg_keychars = ["-d", "-h", "-v", "-a"]
+		@arg_keychars = ["-d", "-h", "-v"]
 		
 		# Set up our default vars
 		@verbose = false
