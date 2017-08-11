@@ -93,7 +93,7 @@ class OptionParser
 		puts <<-VERSIONTEXT
 			ProjectScrape: a tool created to crawl the web for media forms
 			Overly ambitious and ridiculously complex, just how we like it.
-			Developed by elrok123 and obeidath for personal use.
+			Developed by elrok123 and obeidath for personal use V1.0.
 		VERSIONTEXT
 	end
 	def show_help
