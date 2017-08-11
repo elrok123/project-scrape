@@ -3,21 +3,29 @@ class OptionParser
 	@verbose : Bool
 	@debug   : Bool
 	@help    : Bool | Nil
-	@account : String | Bool | Nil
+	@generate_domains : String | Bool | Nil
+	@tool : Bool | Symbol
 
 	def initialize
 		@option_struct = Hash(String, (String | Bool)).new
 
-		# All optional params should be listed in either arg_keywords or arg_keychars, one for the full length param and one for the singe character flags (respectively)
-		arg_keywords = ["generate-domains", "check-active-domains", "scrape-all", "--debug", "--help", "--verbose", "--account", "--version"]
-		arg_keychars = ["-d", "-h", "-v", "-a"]
+		# All optional params should be listed in either @arg_keywords or @arg_keychars, one for the full length param and one for the singe character flags (respectively)
+		@arg_keywords = ["generate-domains", "check-active-domains", "scrape-all", "--debug", "--help", "--verbose", "--account", "--version"]
+		@arg_keychars = ["-d", "-h", "-v", "-a"]
 		
+		# Set up our default vars
+		@verbose = false
+		@debug = false
+		@help = false
+		@generate_domains = false
+		@tool = false
+
 		self.parse_options	
 	end
 	def parse_options
 		# Simple algorithm to parse our arguments
 		ARGV.each_with_index do |arg, i|
-			if arg_keywords.includes?(arg) || arg_keychars.includes?(arg)
+			if @arg_keywords.includes?(arg) || @arg_keychars.includes?(arg)
 				if arg.includes?("-")
 					@option_struct[arg] = true
 				else
@@ -34,7 +42,7 @@ class OptionParser
 		self.set_conditions
 	end
 	def set_conditions
-		if (@option_struct.keys - (arg_keywords+arg_keychars)).size > 0
+		if (@option_struct.keys - (@arg_keywords+@arg_keychars)).size > 0
 			puts "Some wrong args"
 		end
 
@@ -65,14 +73,12 @@ class OptionParser
 			@help = false
 		end
 		# Check if we want to use a specified account
-		if (@option_struct.keys.includes?("-a") || @option_struct.keys.includes?("--account"))
-			if @option_struct.keys.includes? "-a"
-				@account = @option_struct["-a"]
-			elsif @option_struct.keys.includes? "--account"
-				@account = @option_struct["--account"]
-			end
-		else
-			@account = false
+		if @option_struct.keys.includes?("generate-domains")
+			@tool = :generate_domains
+		elsif @option_struct.keys.includes?("check-active-domains")
+			@tool = :check_active_domains
+		elsif @option_struct.keys.includes?("scrape-all")
+			@tool = :scrape_all
 		end
 	end
 	def get_options
@@ -80,7 +86,8 @@ class OptionParser
 			verbose: @verbose,
 			debug: @debug,
 			help: @help,
-			account: @account
+			tool: @tool
+			
 		}
 	end
 	def show_version
