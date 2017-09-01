@@ -1,4 +1,3 @@
-require "http/client"
 # Class to handle requests
 class Request
 	def initialize(url : String)
@@ -27,7 +26,7 @@ class Request
 		if !self.get_status
 			return [] of String
 		end
-	
+
 		command = "curl -L -v #{@url} --max-time 60"
 		stdout	= IO::Memory.new
 		stderr	= IO::Memory.new # curl prints to stderr
@@ -44,19 +43,4 @@ class Request
 		end
 		redirects
 	end
-
 end
-
-req = Request.new "google.com"
-req1 = Request.new "fb.com"
-req2 = Request.new "dslkjfdlskncjwnkcwxkjcnkzqhpqdhhsms.com"
-
-puts "req.get_status"
-puts req.get_status
-puts req1.get_status
-puts req2.get_status
-
-puts "req.get_redirect"
-puts req.get_redirect
-puts req1.get_redirect
-puts req2.get_redirect
