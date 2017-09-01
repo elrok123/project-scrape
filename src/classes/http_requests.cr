@@ -1,17 +1,39 @@
+require "http/client"
 # Class to handle requests
 class Request
 	def initialize(url : String)
 		@url = url
 	end
-	
+
+	def get_status
+		client   			= HTTP::Client.new @url
+		begin
+			response   		= client.get "/"
+			response_code = response.status_code
+			client.close
+		rescue
+			return false
+		else
+			  if response_code >= 200 && response_code < 300
+			  	return false
+				else
+					return true
+			  end
+		end
+	end
+
 	# Executes curl command to get Http redirects
 	def get_redirect
+		if !self.get_status
+			return [] of String
+		end
+	
 		command = "curl -L -v #{@url} --max-time 60"
 		stdout	= IO::Memory.new
 		stderr	= IO::Memory.new # curl prints to stderr
 		process = Process.new(command: command, shell: true, output: stdout, error: stderr)
 		process.wait()
-		
+
 		redirects = [] of String
 
 		stderr.to_s.each_line do |line|
@@ -24,3 +46,17 @@ class Request
 	end
 
 end
+
+req = Request.new "google.com"
+req1 = Request.new "fb.com"
+req2 = Request.new "dslkjfdlskncjwnkcwxkjcnkzqhpqdhhsms.com"
+
+puts "req.get_status"
+puts req.get_status
+puts req1.get_status
+puts req2.get_status
+
+puts "req.get_redirect"
+puts req.get_redirect
+puts req1.get_redirect
+puts req2.get_redirect
