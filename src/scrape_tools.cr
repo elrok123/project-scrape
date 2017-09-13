@@ -3,11 +3,13 @@
 #require "db"
 require "mongo"
 require "colorize"
+require "http/client"
 
 # Custom classes
 require "./classes/mongo.cr"
 require "./classes/option_parser.cr"
 require "./classes/combinator.cr"
+require "./classes/http_requests.cr"
 
 options = OptionParser.new.get_options
 

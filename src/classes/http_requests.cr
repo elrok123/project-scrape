@@ -1,3 +1,4 @@
+require "http/client"
 # Class to handle requests
 class Request
 	def initialize(url : String)
